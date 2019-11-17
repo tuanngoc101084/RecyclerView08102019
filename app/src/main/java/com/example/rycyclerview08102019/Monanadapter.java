@@ -23,7 +23,7 @@ public class Monanadapter extends RecyclerView.Adapter<Monanadapter.MonanViewHol
     public MonanViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context;
         LayoutInflater layoutInflater= LayoutInflater.from(parent.getContext());
-        View view= layoutInflater.inflate(R.layout.activity_main,null);
+        View view= layoutInflater.inflate(R.layout.item_layout_monan,null);
         return new MonanViewHolder(view);
     }
 
