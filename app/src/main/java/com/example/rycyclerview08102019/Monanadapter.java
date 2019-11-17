@@ -16,7 +16,7 @@ public class Monanadapter extends RecyclerView.Adapter<Monanadapter.MonanViewHol
     public Monanadapter(ArrayList<Monan> arrayList) {
         this.arrayList = arrayList;
     }
-
+    private  Onlistener onlistener;
     private ArrayList<Monan> arrayList= new ArrayList<>();
     @NonNull
     @Override
@@ -28,11 +28,24 @@ public class Monanadapter extends RecyclerView.Adapter<Monanadapter.MonanViewHol
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MonanViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MonanViewHolder holder, final int position) {
         Monan monnan= arrayList.get(position);
         holder.img.setImageResource(monnan.getHinhanh());
         holder.txtTen.setText(monnan.getTen());
         holder.txtMota.setText(monnan.getMota());
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                onlistener.setlongtimeOnlistener(v,position);
+                return true;
+            }
+        });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onlistener.setonlickonlistener(v,position);
+            }
+        });
     }
 
     @Override
@@ -50,5 +63,10 @@ public class Monanadapter extends RecyclerView.Adapter<Monanadapter.MonanViewHol
             txtTen= itemView.findViewById(R.id.textten);
             txtMota= itemView.findViewById(R.id.textmota);
         }
+    }
+    public  void Onclicklongtimelistener(Onlistener onlistener)
+    {
+        this.onlistener= onlistener;
+
     }
 }
